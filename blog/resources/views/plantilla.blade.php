@@ -12,5 +12,9 @@
     <div class="contenido">
         @yield('contenido')
     </div>
+    <div style="text-align: right; margin-right: 20px;">
+    Fecha actual: {{ fechaActual('d/m/Y') }}
+</div>
+
 </body>
 </html>

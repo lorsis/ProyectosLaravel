@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostController;
 //Sesion 1
-Route::get('/posts', function () {
+/*Route::get('/posts', function () {
     return 'Listado de posts';
 });
 
@@ -40,8 +40,22 @@ Route::get('/posts', function () {
 Route::get('/post/{id}', function ($id) {
     return view('posts.ficha', ['id' => $id]);
 })->where('id', '[0-9]+')
-  ->name('posts_ficha');
+  ->name('posts_ficha');*/
 
+  // Ruta de inicio
+Route::get('/', function () {
+    return view('welcome');
+})->name('inicio');
+
+// Rutas de posts con controlador de recursos
+Route::resource('posts', PostController::class)
+    ->only(['index', 'show', 'create', 'edit']);
 ?>
+
+
+
+
+
+
 
 
