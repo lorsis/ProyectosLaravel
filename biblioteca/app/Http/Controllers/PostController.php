@@ -1,37 +1,23 @@
 <?php
+
 namespace App\Http\Controllers;
 
+// Importem els models que utilitzarem
+use App\Models\Post;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index()
     {
-        // Dades que s'envien a la vista
-        $posts = [
-            ["titulo" => "Primer post", "autor" => "Autor1"],
-            ["titulo" => "Segundo post", "autor" => "Autor2"]
-        ];
-
-        // Retornem la vista amb les dades
+        $posts = Post::paginate(5);
         return view('posts.index', compact('posts'));
     }
 
     public function show($id)
     {
-        return view('posts.show', compact('id'));
-    }
-
-    public function create()
-    {
-        return "Nuevo post";
-    }
-
-    public function edit($id)
-    {
-        return "Edición de post";
+        $post = Post::findOrFail($id);
+        return view('posts.show', compact('post'));
     }
 }
-
-
-?>

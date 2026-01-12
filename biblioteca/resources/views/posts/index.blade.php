@@ -20,6 +20,16 @@
         @endforeach
     </ul>
 
+    <h1>Llistat de posts</h1>
+
+<ul>
+@foreach($posts as $post)
+    <li><a href="{{ route('posts.show', $post->id) }}">{{ $post->titulo }}</a></li>
+@endforeach
+</ul>
+
+{{ $posts->links() }}
+
 </body>
 
 </html>

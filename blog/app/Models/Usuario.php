@@ -6,17 +6,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+
+/*class Usuario extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    /** @use HasFactory<\Database\Factories\UserFactory>
     use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
-     */
+
     protected $fillable = [
         'name',
         'email',
@@ -27,7 +29,7 @@ class User extends Authenticatable
      * The attributes that should be hidden for serialization.
      *
      * @var list<string>
-     */
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -37,7 +39,7 @@ class User extends Authenticatable
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
-     */
+     
     protected function casts(): array
     {
         return [
@@ -45,4 +47,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+}*/
+class Usuario extends Model
+{
+    protected $fillable = ['login', 'password'];
 }

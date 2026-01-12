@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-
-    <title>Listado de Posts</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-</head>
-<body>
-    <h1>Listado de Posts</h1>
-    <p>Aquí aparecerá la lista de tus posts.</p>
-</body>
-</html>
+@foreach($posts as $post)
+    <h2>{{ $post->titulo }}</h2>
+    <p>{{ $post->contenido }}</p>
+    <form action="{{ route('posts.destroy', $post) }}" method="POST">
+        @method('DELETE')
+        @csrf
+        <button>Borrar</button>
+    </form>
+@endforeach
