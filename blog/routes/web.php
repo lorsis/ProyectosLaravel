@@ -2,20 +2,26 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\DB;
 
-Route::resource('posts', PostController::class);
-
-// Ruta de inicio
+// Página principal
 Route::get('/', function () {
-    return view('inicio');
+    $nombre = DB::table('users')->value('name');
+    return view('inicio', compact('nombre'));
 })->name('inicio');
 
-// Ruta del listado
-Route::get('listado', function () {
-    return view('posts.listado');
-})->name('posts_listado');
+// Rutas CRUD de posts (index, show, create, edit, destroy)
+Route::resource('posts', PostController::class)
+    ->only(['index', 'show', 'create', 'store', 'edit', 'destroy'])
+    ->names([
+        'index' => 'posts_listado',
+        'show' => 'posts_ficha',
+        'create' => 'posts_create',
+        'store' => 'posts_store',
+        'edit' => 'posts_edit',
+        'destroy' => 'posts_destroy'
+    ]);
 
-// Ruta de ficha
-Route::get('posts/{id}', function ($id) {
-    return view('posts.ficha', ['id' => $id]);
-})->where('id', '[0-9]+')->name('posts_ficha');
+
+// Ruta de prueba del helper
+Route::get('/prueba-helper', [PostController::class, 'pruebaHelper'])->name('prueba_helper');

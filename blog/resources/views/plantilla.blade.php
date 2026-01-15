@@ -2,17 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('titulo') - Mi Blog</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <title>Mi Blog</title>
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS (opcional, per components com modals o dropdowns) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
-    @include('partials.nav')
-
-    <main class="container mt-4">
-        @yield('contenido')
-    </main>
-
-    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('contenido')
 </body>
 </html>
