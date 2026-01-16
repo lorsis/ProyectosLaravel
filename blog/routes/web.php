@@ -12,13 +12,14 @@ Route::get('/', function () {
 
 // Rutas CRUD de posts (index, show, create, edit, destroy)
 Route::resource('posts', PostController::class)
-    ->only(['index', 'show', 'create', 'store', 'edit', 'destroy'])
+    ->only(['index', 'show', 'create', 'store', 'edit', 'update','destroy'])
     ->names([
         'index' => 'posts_listado',
         'show' => 'posts_ficha',
         'create' => 'posts_create',
         'store' => 'posts_store',
         'edit' => 'posts_edit',
+        'update' => 'posts_update',
         'destroy' => 'posts_destroy'
     ]);
 

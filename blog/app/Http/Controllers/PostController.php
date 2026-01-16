@@ -21,14 +21,19 @@ class PostController extends Controller
         }
 
         // Con base de datos: cargar relación con usuario
-        $posts = Post::with('usuario')->orderBy('titulo', 'ASC')->paginate(5);
-        return view('posts.index', compact('posts'));
+     $posts = Post::with('usuario')->orderBy('titulo', 'ASC')->paginate(5);
+
+// Obtener la fecha y hora actual
+$fechaHora = date('d/m/Y H:i:s'); // formato: día/mes/año hora:min:seg
+
+return view('posts.index', compact('posts', 'fechaHora'));
+
+
     }
 
     // Mostrar un solo post
     public function show(Post $post)
     {
-        // Si no hay base de datos
         if (!class_exists('App\Models\Post')) {
             return view('posts.ficha', ['id' => $post->id ?? null]);
         }
@@ -36,31 +41,65 @@ class PostController extends Controller
         return view('posts.show', compact('post'));
     }
 
-    // Borrar un post
+    // Mostrar formulario para crear post
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    // Guardar nuevo post
+    public function store(Request $request)
+    {
+        // Validación
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'contenido' => 'required|string',
+        ]);
+
+        // Crear post en base de datos
+        Post::create([
+            'titulo' => $request->titulo,
+            'contenido' => $request->contenido,
+        ]);
+
+        // Redirigir con mensaje de éxito
+        return redirect()->route('posts_listado')->with('success', 'Post creado correctamente');
+    }
+
+    // Mostrar formulario de edición
+    public function edit(Post $post)
+    {
+        if (!class_exists('App\Models\Post')) {
+            return view('posts.edit', ['id' => $post->id ?? null]);
+        }
+
+        return view('posts.edit', compact('post'));
+    }
+
+    // Actualizar post
+    public function update(Request $request, Post $post)
+    {
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'contenido' => 'required|string',
+        ]);
+
+        $post->update([
+            'titulo' => $request->titulo,
+            'contenido' => $request->contenido,
+        ]);
+
+        return redirect()->route('posts_listado')->with('success', 'Post actualizado correctamente');
+    }
+
+    // Borrar post
     public function destroy(Post $post)
     {
         if (class_exists('App\Models\Post')) {
             $post->delete();
         }
 
-        return redirect()->route('posts_listado');
-    }
-
-    // Crear post
-    public function create()
-    {
-        return view('posts.create');
-    }
-
-    // Editar post
-    public function edit(Post $post)
-    {
-        // Si no hay base de datos, pasar id
-        if (!class_exists('App\Models\Post')) {
-            return view('posts.edit', ['id' => $post->id ?? null]);
-        }
-
-        return view('posts.edit', compact('post'));
+        return redirect()->route('posts_listado')->with('success', 'Post eliminado correctamente');
     }
 
     // PRUEBA DEL HELPER
