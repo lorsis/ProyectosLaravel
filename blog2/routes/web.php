@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+
 
 Route::get('/', function () {
     return view('inicio');
@@ -14,3 +16,13 @@ Route::get('/posts/{id}', function ($id) {
     return view('posts.ficha', ['id' => $id]);
 })->where('id', '[0-9]+')
   ->name('posts_ficha');
+
+
+Route::resource('posts', PostController::class)->only([
+    'index',  // listado
+    'show',   // ficha
+    'create', // creación
+    'edit'    // edición
+]);
+
+

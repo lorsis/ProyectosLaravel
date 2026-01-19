@@ -7,8 +7,13 @@
                     <a class="nav-link" href="{{ route('inicio') }}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('posts_listado') }}">Listado de posts</a>
+                    <a class="nav-link" href="{{ route('posts.index') }}">Listado de posts</a>
                 </li>
+                <!-- Aquí afegeixes els enllaços de crear/editar -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('posts.create') }}">Nuevo post</a>
+                </li>
+                <!-- L'enllaç d'editar normalment apareix dins la vista d'un post concret -->
             </ul>
         </div>
     </div>
