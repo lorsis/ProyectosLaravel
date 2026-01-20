@@ -15,7 +15,9 @@ class ComentarioFactory extends Factory
     {
         return [
             'contenido' => $this->faker->sentence,
+            // Aquí seleccionamos un usuario existente
             'user_id' => User::inRandomOrder()->first()->id,
+            // Aquí seleccionamos un post existente
             'post_id' => Post::inRandomOrder()->first()->id,
         ];
     }

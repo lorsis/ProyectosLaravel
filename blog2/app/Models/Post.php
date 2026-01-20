@@ -22,4 +22,6 @@ class Post extends Model
     return $this->hasMany(Comentario::class);
 }
 
+
+
 }

@@ -8,7 +8,7 @@
 
         <!-- Botón para crear post de prueba -->
         <form action="{{ route('posts.create') }}" method="GET">
-            <button type="submit">Crear</button>
+            <button type="submit" class="btn btn-success">Crear</button>
         </form>
 
 
