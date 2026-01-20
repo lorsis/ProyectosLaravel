@@ -26,17 +26,32 @@ class PostController extends Controller
     public function create()
     {
         //
-        return redirect()->route('inicio'); // /posts/crear -> /
+    return view('posts.create');
 
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+   public function store(Request $request)
+{
+    // Validar solo los campos que vienen del formulario
+    $request->validate([
+        'titulo' => 'required|max:255',
+        'contenido' => 'required',
+    ]);
+
+    // Crear el post con usuario_id del usuario autenticado
+    Post::create([
+        'titulo' => $request->titulo,
+        'contenido' => $request->contenido,
+        'usuario_id' => auth()->id(),
+
+    ]);
+
+    return redirect()->route('posts.index')->with('success', 'Post creado correctamente.');
+}
+
 
     /**
      * Display the specified resource.
@@ -54,17 +69,29 @@ class PostController extends Controller
     public function edit(string $id)
     {
         //
-        return redirect()->route('inicio'); // /posts/{id}/editar -> /
-
-    }
+          $post = Post::findOrFail($id);
+    return view('posts.edit', compact('post'));
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+   public function update(Request $request, $id)
+{
+    $request->validate([
+        'titulo' => 'required|max:255',
+        'contenido' => 'required',
+    ]);
+
+    $post = Post::findOrFail($id);
+    $post->update([
+        'titulo' => $request->titulo,
+        'contenido' => $request->contenido,
+    ]);
+
+    return redirect()->route('posts.index')->with('success', 'Post actualizado correctamente.');
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -72,8 +99,7 @@ class PostController extends Controller
    public function destroy($id)
 {
     Post::findOrFail($id)->delete();
-    $posts = Post::orderBy('titulo', 'asc')->paginate(5);
-    return view('posts.index', compact('posts'));
+    return redirect()->route('posts.index')->with('success', 'Post eliminado correctamente.');
 }
 // Crear post aleatorio
 public function nuevoPrueba()

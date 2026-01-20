@@ -3,32 +3,24 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
-
+// Página de inicio
 Route::get('/', function () {
     return view('inicio');
 })->name('inicio');
 
-Route::get('/posts', function () {
-    return view('posts.listado');
-})->name('posts_listado');
-
-Route::get('/posts/{id}', function ($id) {
-    return view('posts.ficha', ['id' => $id]);
-})->where('id', '[0-9]+')
-  ->name('posts_ficha');
-
-
+// Rutas de posts usando resource
 Route::resource('posts', PostController::class)->only([
-    'index',  // listado
-    'show',   // ficha
-    'create', // creación
-    'edit'    // edición
+    'index',   // listado
+    'show',    // ficha
+    'create',  // creación
+    'store',   // almacenamiento
+    'edit',     // edición
+    'update',   // actualización
+    'destroy'  // eliminación
 ]);
 
-// Rutas resource (index, show, destroy)
-Route::resource('posts', PostController::class)->except(['create', 'edit', 'store', 'update']);
-
-
-Route::get('/posts/nuevoPrueba', [PostController::class, 'nuevoPrueba']);
-Route::get('/posts/editarPrueba/{id}', [PostController::class, 'editarPrueba']);
+// Rutas personalizadas de prueba (si las necesitas)
+Route::get('/posts/nuevoPrueba', [PostController::class, 'nuevoPrueba'])->name('posts.nuevoPrueba');
+Route::get('/posts/editarPrueba/{id}', [PostController::class, 'editarPrueba'])->name('posts.editarPrueba');
+Route::resource('posts', PostController::class);
 
