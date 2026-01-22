@@ -15,9 +15,9 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()->word(),   // només una paraula
+            'name' => fake()->unique()->word(),   
             'email' => fake()->unique()->safeEmail(),
-            'password' => '123456',               // sense encriptar per provar
+            'password' => '123456',
         ];
     }
 }

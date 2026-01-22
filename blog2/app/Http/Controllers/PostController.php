@@ -39,6 +39,7 @@ class PostController extends Controller
     $request->validate([
         'titulo' => 'required|max:255',
         'contenido' => 'required',
+
     ]);
 
     // Crear el post con usuario_id del usuario autenticado

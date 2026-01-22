@@ -11,9 +11,9 @@ class Comentario extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['contenido', 'user_id', 'post_id']; 
+    protected $fillable = ['contenido', 'user_id', 'post_id'];
 
-    public function user() // CORREGIDO
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
