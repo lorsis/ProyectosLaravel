@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Post;
+use App\Models\Comentario;
 
 
 
@@ -36,17 +37,18 @@ class PostController extends Controller
    public function store(Request $request)
 {
     // Validar solo los campos que vienen del formulario
-    $request->validate([
-        'titulo' => 'required|max:255',
-        'contenido' => 'required',
+   // $request->validate([
+       // 'titulo' => 'required|max:255',
+       // 'contenido' => 'required',
 
-    ]);
+    //]);
 
     // Crear el post con usuario_id del usuario autenticado
     Post::create([
         'titulo' => $request->titulo,
         'contenido' => $request->contenido,
-        'usuario_id' => auth()->id(),
+       'usuario_id' => auth()->id(),
+
 
     ]);
 
@@ -79,10 +81,10 @@ class PostController extends Controller
      */
    public function update(Request $request, $id)
 {
-    $request->validate([
+    /*$request->validate([
         'titulo' => 'required|max:255',
         'contenido' => 'required',
-    ]);
+    ]);*/
 
     $post = Post::findOrFail($id);
     $post->update([
@@ -99,6 +101,7 @@ class PostController extends Controller
      */
    public function destroy($id)
 {
+    Comentario::where('post_id', $id)->delete();
     Post::findOrFail($id)->delete();
     return redirect()->route('posts.index')->with('success', 'Post eliminado correctamente.');
 }

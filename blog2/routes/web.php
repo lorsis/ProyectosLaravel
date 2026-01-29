@@ -19,7 +19,6 @@ Route::resource('posts', PostController::class)->only([
     'destroy'  // eliminación
 ]);
 
-// Rutas personalizadas de prueba (si las necesitas)
 Route::get('/posts/nuevoPrueba', [PostController::class, 'nuevoPrueba'])->name('posts.nuevoPrueba');
 Route::get('/posts/editarPrueba/{id}', [PostController::class, 'editarPrueba'])->name('posts.editarPrueba');
 Route::resource('posts', PostController::class);
