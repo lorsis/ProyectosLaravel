@@ -6,7 +6,7 @@
     <div class="container mt-3">
         <h1>Listado de Posts</h1>
 
-        <!-- Botón para crear post de prueba -->
+        <!-- Botón para crear -->
         <form action="{{ route('posts.create') }}" method="GET">
             <button type="submit" class="btn btn-success">Crear</button>
         </form>

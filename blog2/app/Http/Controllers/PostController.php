@@ -126,6 +126,10 @@ public function editarPrueba($id)
 
     return redirect()->route('posts.show', $id);
 }
+public function __construct()
+{
+    //$this->middleware('auth')->except(['index', 'show']);
+}
 
 
 }

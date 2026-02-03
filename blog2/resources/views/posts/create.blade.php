@@ -23,8 +23,7 @@
                                 id="titulo"
                                 class="form-control @error('titulo') is-invalid @enderror"
                                 value="{{ old('titulo') }}"
-                                placeholder="Escribe el título"
-                            >
+                                placeholder="Escribe el título">
 
                             @error('titulo')
                                 <div class="invalid-feedback">
@@ -55,9 +54,7 @@
                         </a>
                     </form>
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>
