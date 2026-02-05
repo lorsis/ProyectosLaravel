@@ -12,6 +12,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('posts.create') }}">Nuevo post</a>
                 </li>
+                @if(auth()->check()) <li class="{{ setActivo('posts.create') }} nav-item"> <a class="nav-link" href="{{ route('posts.create') }}">Nuevo post</ </li> @endif 
+                @if(auth()->check()) <li class="{{ setActivo('posts.create') }} nav-item"> <a class="nav-link" href="{{ route('posts.create') }}">Nuevo post</ </li> <li class="nav-item"> <a class="nav-link" href="{{ route('logout') }}">Logout</a> </li> @endif 
             </ul>
         </div>
     </div>

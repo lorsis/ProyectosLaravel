@@ -1,6 +1,9 @@
-@extends('layouts.app')
+@extends('plantilla')
 
-@section('content')
+@section('titulo', 'Ficha del Post')
+
+@section('contenido')
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">

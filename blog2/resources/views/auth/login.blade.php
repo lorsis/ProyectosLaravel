@@ -14,7 +14,7 @@
         <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
             <h3 class="card-title text-center mb-3">Iniciar sesión</h3>
 
-            <form method="POST" action="{{ route('login.perform') }}">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="mb-3">

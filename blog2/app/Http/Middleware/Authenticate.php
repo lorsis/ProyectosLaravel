@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class Authenticate
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    
+    Public function handle(Request $request, Closure $next): Response 
+    { if (¡Auth::check()){ return redirect(‘login’);//redirige si el usuario no esta autenticado } return $next($request); } 
+}
+    }
+}

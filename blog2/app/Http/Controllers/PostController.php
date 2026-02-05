@@ -14,6 +14,10 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function  construct() { 
+        $this->middleware('auth', ['only' => 
+        ['create', 'store', 'edit', 'update', 'destroy']]); } 
+
    public function index()
 {
     $posts = Post::orderBy('titulo', 'asc')->paginate(5);
@@ -27,6 +31,7 @@ class PostController extends Controller
     public function create()
     {
         //
+       // echo"Prova";
     return view('posts.create');
 
     }
