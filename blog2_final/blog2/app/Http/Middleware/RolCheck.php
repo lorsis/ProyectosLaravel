@@ -11,11 +11,11 @@ class RolCheck
     public function handle(Request $request, Closure $next, $rol)
     {
         if (!Auth::check()) {
-            return redirect()->route('login'); // No logueado
+            return redirect()->route('login'); 
         }
 
         if (Auth::user()->rol !== $rol) {
-            return redirect()->route('posts.index'); // Rol incorrecto
+            return redirect()->route('posts.index'); 
         }
 
         return $next($request);

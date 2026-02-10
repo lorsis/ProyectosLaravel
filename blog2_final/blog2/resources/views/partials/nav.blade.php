@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ route('inicio') }}">Blog</a>
 
@@ -17,7 +17,9 @@
                         <a class="nav-link" href="{{ route('posts.create') }}">Nuevo post</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Cerrar sesión {{ auth()->user()->login }}</a>
+                        <a class="nav-link" href="{{ route('logout') }}">
+                            Cerrar sesión {{ auth()->user()->login }}
+                        </a>
                     </li>
                 @endguest
             </ul>

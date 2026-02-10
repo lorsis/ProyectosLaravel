@@ -19,11 +19,10 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    // (El método construct() incorrecto fue eliminado; se usa __construct() arriba)
 
    public function index()
 {
-    $posts = Post::orderBy('titulo', 'asc')->paginate(5);
+    $posts = Post::orderBy('id', 'asc')->paginate(5);
     return view('posts.index', compact('posts'));
 }
 
